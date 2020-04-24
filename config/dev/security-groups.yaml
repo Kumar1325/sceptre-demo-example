@@ -1,0 +1,7 @@
+--- 
+template_path: security-groups.yaml
+dependencies: 
+  - dev/vpc.yaml
+parameters: 
+  VpcId: !stack_output dev/vpc.yaml::VpcId
+

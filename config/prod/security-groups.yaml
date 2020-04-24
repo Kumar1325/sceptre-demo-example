@@ -1,0 +1,7 @@
+template_path: security_groups.py
+dependencies:
+    - prod/vpc.yaml
+parameters:
+  VpcId: !stack_output prod/vpc.yaml::VpcId 
+  Environment: !stack_output prod/vpc.yaml::Environment
+  Product: Test

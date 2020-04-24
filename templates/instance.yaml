@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS EC2 Instance
+
+Parameters:
+    AmiId:
+        Type: String
+    SubnetId:
+        Type: String
+    SecurityGroup:
+        Type: String
+
+Resources:
+    EC2Instance:
+        Type: AWS::EC2::Instance
+        Properties:
+            ImageId: !Ref AmiId
+            InstanceType: t2.micro
+            SecurityGroupIds:
+                - !Ref SecurityGroup
+            SubnetId: !Ref SubnetId
+            Tags:
+                - Key: Name
+                  Value: Kumar-Tes-Instance
+                - Key: Owner
+                  Value: kumar.puttakokkula
+                - Key: Project
+                  Value: CITI
+                - Key: Environment
+                  Value: Test
+                - Key: ExpirationDate
+                  Value: 25-04-2020 

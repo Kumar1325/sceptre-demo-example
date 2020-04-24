@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+    VpcId:
+        Description: Existing VPC Id
+        Type: String
+Resources:
+    lambdaSg:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            VpcId: !Ref VpcId
+            GroupDescription: Lambda Security Group
+            GroupName: LambdaSG
+            SecurityGroupEgress:
+                - 
+                    DestinationSecurityGroupId: !Ref AppSG 
+                    Description: Https Lambda access to Web
+                    FromPort: 443
+                    ToPort: 443
+                    IpProtocol: tcp
+    AppSG:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            VpcId: !Ref VpcId
+            GroupDescription: Application HTTPs traffic
+            GroupName: AppSG
+            SecurityGroupIngress:
+                - 
+                    Description: Application access from Lambda
+                    CidrIp: 0.0.0.0/0
+                    FromPort: 443
+                    ToPort: 443
+                    IpProtocol: tcp
+Outputs:
+    AppSG:
+        Value: !Ref AppSG

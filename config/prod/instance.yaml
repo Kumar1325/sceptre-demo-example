@@ -1,0 +1,10 @@
+template_path: instance.py
+dependencies:
+    - prod/vpc.yaml
+    - prod/security-groups.yaml
+parameters:
+    AmiId: ami-0d6621c01e8c2de2c
+    SubnetId: !stack_output prod/vpc.yaml::PublicSubnet1ID
+    SecurityGroup: !stack_output prod/security-groups.yaml::AppSG
+    Product: Test
+    Environment: prod

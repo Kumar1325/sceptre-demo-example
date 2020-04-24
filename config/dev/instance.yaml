@@ -1,0 +1,9 @@
+template_path: instance.yaml
+dependencies:
+    - dev/vpc.yaml
+    - dev/security-groups.yaml
+parameters:
+    AmiId: ami-0323c3dd2da7fb37d 
+    SubnetId: !stack_output dev/vpc.yaml::pubSubA
+    SecurityGroup: !stack_output dev/security-groups.yaml::AppSG
+    

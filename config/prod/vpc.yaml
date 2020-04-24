@@ -1,0 +1,14 @@
+template_path: vpc.py
+
+
+parameters:
+  Project: WordpressEFS
+  Environment: prod
+  Product: Test
+  VpcCidr: 10.1.0.0/16
+  PublicSubnet1: 10.1.10.0/24
+  PublicSubnet2: 10.1.20.0/24
+  PrivateSubnet1: 10.1.11.0/24
+  PrivateSubnet2: 10.1.21.0/24
+  AvailabilityZone1: us-west-2a
+  AvailabilityZone2: us-west-2b
