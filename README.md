@@ -20,3 +20,11 @@ You should be on the root directory of the Repo
 
 ## Deleting/Destroying
 `sceptre delete <env>`
+
+## References
+- https://github.com/cloudreach/sceptre-wordpress-example
+- https://github.com/densikat-shinesolutions/sceptre-example
+- https://sceptre.cloudreach.com/latest/docs/get_started.html
+- https://sceptre.cloudreach.com/latest/docs/hooks.html
+- https://sceptre.cloudreach.com/latest/docs/resolvers.html
+- https://www.youtube.com/watch?v=g0AQWT9J88A
