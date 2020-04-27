@@ -1,0 +1,12 @@
+template_path: lambda.py
+dependencies:
+    - dev/iam.yaml
+parameters:
+  Name: my-awesome-function
+  Role: !stack_output dev/iam.yaml::RoleArn
+sceptre_user_data:
+  Runtime: python3.7
+  Handler: lambda.handler
+  Code: 
+    ZipFile: !file_contents src/my_function.py
+
