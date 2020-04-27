@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 from troposphere import Template, Parameter
-from constants import *
 from abc import ABCMeta
 
 
 class CloudformationAbstractBaseClass:
-
     """ Abstract base class with some common CFN functionality """
 
     __metaclass__ = ABCMeta
 
     def __init__(self):
+        """ Initialization """
         # Add local vars
         self.template = Template()
         self.add_mandatory_tags()
@@ -34,7 +33,7 @@ class CloudformationAbstractBaseClass:
                 Description="Project Name",
                 MinLength="1",
                 MaxLength="255",
-                Default=PROJECT,
+                Default="CITI",
                 AllowedPattern="[\\x20-\\x7E]*",
                 ConstraintDescription="can contain only ASCII characters.",
             )

@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from troposphere import Base64, Select, FindInMap, GetAtt, GetAZs, Join, Output
-from troposphere import Parameter, Ref, Tags, Template
-import troposphere.efs as efs
+from troposphere import  Join, Output
+from troposphere import Parameter, Ref, Tags
 import troposphere.ec2 as ec2
-from constants import *
 from base import CloudformationAbstractBaseClass
 
 
@@ -23,7 +21,6 @@ class SecurityGroup(CloudformationAbstractBaseClass):
         )
 
     def add_resources(self):
-
         t = self.template
 
         self.MountTargetSecurityGroup = t.add_resource(
