@@ -1,0 +1,8 @@
+deploy_lambda_hook.py
+empty_bucket_hook.py
+setup.py
+deploy_lambda_hook.egg-info/PKG-INFO
+deploy_lambda_hook.egg-info/SOURCES.txt
+deploy_lambda_hook.egg-info/dependency_links.txt
+deploy_lambda_hook.egg-info/entry_points.txt
+deploy_lambda_hook.egg-info/top_level.txt

@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda code deployment.
+
+Parameters:
+  Environment:
+    Type: String
+    Default: TEST
+  FunctionName:
+    Type: String
+    Default: kumar-test-lambda-function
+  ZipFile:
+    Type: String
+  BucketName:
+    Type: String
+  ExecutionRoleName:
+    Type: String
+    Default: kumar-lambda-execution-role
+  Region:
+    Type: String
+    Default: us-east-1
+
+Resources:
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ExecutionRoleName}"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Sid: AllowLambdaToCreateLogGroup
+            Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            Resource: !Sub "arn:aws:logs:${Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}"
+
+  Function:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Ref FunctionName
+      Timeout: 900
+      Handler: my_function.lambda_handler
+      Runtime: python3.6
+      MemorySize: 256
+      Code:
+        S3Bucket: !Ref BucketName
+        S3Key: !Ref ZipFile
+      Role: !GetAtt ExecutionRole.Arn
+

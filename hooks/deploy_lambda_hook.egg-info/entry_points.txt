@@ -1,0 +1,4 @@
+[sceptre.hooks]
+deploy_lambda_hook = deploy_lambda_hook:DeployLambdaHook
+empty_bucket_hook = empty_bucket_hook:EmptyBucketHook
+

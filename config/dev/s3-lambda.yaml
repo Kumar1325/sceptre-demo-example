@@ -1,0 +1,13 @@
+template_path: cfn/s3_bucket_lambda.yaml
+stack_name: kumar-s3-lambda
+parameters:
+  Owner: kumar.puttakokkula
+  Project: CITI
+  BucketName: kumarmybucket
+stack_tags:
+  Project: CITI
+  Environment: TEST
+  Owner: kumar.puttakokkula
+hooks:
+  before_delete:
+    - !empty_bucket_hook kumarmybucket

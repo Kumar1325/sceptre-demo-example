@@ -1,5 +1,13 @@
 .PHONY: deploy_dev deploy_prod destroy_dev destroy_prod validate_dev validate_prod test
 
+dist:
+	@cd src && zip -r9 kumar-lambda.zip .
+	@mkdir dist && mv src/kumar-lambda.zip dist
+
+deploy_lambda: dist
+	@echo "Deploying Lambda"
+	@sceptre launch dev/lambda.yaml --yes
+
 test:
 	@echo "Not test case written as of now, you can add them"
 

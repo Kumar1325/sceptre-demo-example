@@ -1,12 +1,14 @@
-template_path: lambda.py
+template_path: cfn/deploy_lambda.yaml
 dependencies:
-    - dev/iam.yaml
+    - dev/s3-lambda.yaml
 parameters:
-  Name: my-awesome-function
-  Role: !stack_output dev/iam.yaml::RoleArn
-sceptre_user_data:
-  Runtime: python3.7
-  Handler: lambda.handler
-  Code: 
-    ZipFile: !file_contents src/my_function.py
+  FunctionName: my-awesome-function
+  ExecutionRoleName: kumar-lambda-test-exec-role
+  ZipFile: kumar-lambda.zip
+  BucketName: kumarmybucket
 
+hooks:
+  before_create:
+    - !deploy_lambda_hook kumarmybucket kumar-lambda.zip
+  before_update:
+    - !deploy_lambda_hook kumarmybucket kumar-lambda.zip

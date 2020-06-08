@@ -28,3 +28,5 @@ Resources:
 Outputs:
     RoleArn:
         Value: !GetAtt LambdaExecRole.Arn
+    RoleName:
+        Value: !Ref LambdaExecRole
