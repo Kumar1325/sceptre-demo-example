@@ -1,0 +1,14 @@
+template_path: cfn/deploy_lambda.yaml
+dependencies:
+    - dev/s3-lambda.yaml
+parameters:
+  FunctionName: my-awesome-function
+  ExecutionRoleName: kumar-lambda-test-exec-role
+  ZipFile: kumar-lambda.zip
+  BucketName: kumarmybucket
+
+hooks:
+  before_create:
+    - !deploy_lambda_hook kumarmybucket kumar-lambda.zip
+  before_update:
+    - !deploy_lambda_hook kumarmybucket kumar-lambda.zip
